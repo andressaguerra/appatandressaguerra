@@ -10,50 +10,42 @@
 </head>
 <body>
 	<div class="jumbotron text-center">
-		<h1>Inclusão de Pedidos</h1>
+		<h1>Cadastro de Usuários</h1>
 	</div>
 	<div class="container">
-		<form action="/pedido/incluir" method="post">
+		<form action="/usuario/incluir" method="post">
 			<div class="form-group">
-				<label>Usuário:</label>
-				<select class="form-control" name="usuario.id">
-					<c:forEach var="u" items="${usuarios}">
-						<option value="${u.id}">${u.nome} | ${u.email}</option>
-					</c:forEach>
-				</select>
+				<label>Nome:</label> <input type="text" class="form-control" placeholder="Insira o seu nome" name="nome">
 			</div>
 			
 			<div class="form-group">
-				<label>Cliente:</label>
-				<select class="form-control" name="cliente.id">
-					<c:forEach var="c" items="${clientes}">
-						<option value="${c.id}">${c.nome}</option>
-					</c:forEach>
-				</select>
+				<label>E-mail:</label> <input type="email" class="form-control" placeholder="Insira o seu e-mail" name="email">
 			</div>
 			
 			<div class="form-group">
-				<label>Descrição:</label> <input type="text" class="form-control" placeholder="Insira o seu pedido" name="descricao">
+				<label>Senha:</label> <input type="password" class="form-control" placeholder="Insira a sua senha" name="senha">
 			</div>
 
-			<button type="submit" class="btn btn-default">Incluir</button>
+			<button type="submit" class="btn btn-default">Cadastrar</button>
 		</form>
 	</div>
 	<div class="container">
 		<c:if test="${not empty lista}">
-			<h2>Listagem de Pedidos</h2>
+			<h2>Listagem de Usuários</h2>
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>Descrição</th>
+						<th>Nome</th>
+						<th>E-mail</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="p" items="${lista}">
+					<c:forEach var="u" items="${lista}">
 						<tr>
-							<td>${p.descricao}</td>
-							<td><a href="/pedido/${p.id}/excluir">Excluir</a></td>
+							<td>${u.nome}</td>
+							<td>${u.email}</td>
+							<td><a href="/usuario/${u.id}/excluir">Excluir</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -62,7 +54,7 @@
 
 		<c:if test="${empty lista}">
 			<br>
-			<p>Nenhum pedido cadastrado.</p>
+			<p>Nenhum usuário cadastrado.</p>
 		</c:if>
 		
 		<form action="/" method="get">

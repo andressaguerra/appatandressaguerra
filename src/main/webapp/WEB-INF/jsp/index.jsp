@@ -8,19 +8,18 @@
 </head>
 <body>
 	<div class="jumbotron text-center">
-	  <h1>${nome}</h1>
-	  <p>${email}</p>
+		<h1>${nome}</h1>
+		<p>${email}</p>
 	</div>
 	<div class="container">
 		<p><a href="${git}" target="_blank">Projeto AT de Desenvolvimento Web com Java EE (Github)</a></p>
 		<form action="/cliente" method="get">
 			<button type="submit" class="btn btn-default">Novo Cliente</button>
 		</form>
-		
+
 		<form action="/pedido" method="get">
 			<button type="submit" class="btn btn-default">Novo Pedido</button>
 		</form>
-		
 	</div>
 </body>
 </html>
