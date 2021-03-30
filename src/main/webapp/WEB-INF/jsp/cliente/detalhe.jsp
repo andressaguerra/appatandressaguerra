@@ -41,14 +41,18 @@
 				</tbody>
 			</table>
 		</c:if>
-
+		<c:if test="${not empty erro}">
+			<div class="alert alert-danger">
+				<strong>Erro!</strong> ${erro}
+			</div>
+		</c:if>
 		<c:if test="${empty lista}">
 			<br>
 			<p>Nenhum cliente cadastrado.</p>
 		</c:if>
 		
-		<form action="/" method="get">
-			<button type="submit" class="btn btn-default">Voltar</button>
+		<form action="/home" method="get">
+			<button type="submit" class="btn btn-default">Home</button>
 		</form>
 	</div>
 </body>

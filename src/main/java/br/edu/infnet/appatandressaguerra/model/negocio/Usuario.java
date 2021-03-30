@@ -20,6 +20,7 @@ public class Usuario {
 	private String nome;
 	private String email;
 	private String senha;
+	private String git;
 	@OneToMany
 	@JoinColumn(name = "idUsuario")
 	private List<Pedido> pedidos;
@@ -62,6 +63,14 @@ public class Usuario {
 	
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
+	}
+
+	public String getGit() {
+		return git;
+	}
+
+	public void setGit(String git) {
+		this.git = git;
 	}
 	
 	

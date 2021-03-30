@@ -15,15 +15,6 @@
 	<div class="container">
 		<form action="/pedido/incluir" method="post">
 			<div class="form-group">
-				<label>Usuário:</label>
-				<select class="form-control" name="usuario.id">
-					<c:forEach var="u" items="${usuarios}">
-						<option value="${u.id}">${u.nome} | ${u.email}</option>
-					</c:forEach>
-				</select>
-			</div>
-			
-			<div class="form-group">
 				<label>Cliente:</label>
 				<select class="form-control" name="cliente.id">
 					<c:forEach var="c" items="${clientes}">
@@ -46,6 +37,7 @@
 				<thead>
 					<tr>
 						<th>Descrição</th>
+						<th>Cliente</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -53,6 +45,7 @@
 					<c:forEach var="p" items="${lista}">
 						<tr>
 							<td>${p.descricao}</td>
+							<td>${p.cliente.nome}</td>
 							<td><a href="/pedido/${p.id}/excluir">Excluir</a></td>
 						</tr>
 					</c:forEach>
@@ -65,8 +58,8 @@
 			<p>Nenhum pedido cadastrado.</p>
 		</c:if>
 		
-		<form action="/" method="get">
-			<button type="submit" class="btn btn-default">Voltar</button>
+		<form action="/home" method="get">
+			<button type="submit" class="btn btn-default">Home</button>
 		</form>
 	</div>
 </body>

@@ -33,9 +33,14 @@ public class ClienteController {
 	}
 	
 	@GetMapping(value = "/cliente/{id}/excluir")
-	public String excluir(@PathVariable Integer id) {
+	public String excluir(Model model, @PathVariable Integer id) {
 		
-		clienteService.excluir(id);
+		try {
+			clienteService.excluir(id);
+		} catch (Exception e) {
+			model.addAttribute("erro", "Não é possível excluir um cliente que possui pedidos.");
+			return showCliente(model);
+		}
 		
 		return "redirect:/cliente";
 	}

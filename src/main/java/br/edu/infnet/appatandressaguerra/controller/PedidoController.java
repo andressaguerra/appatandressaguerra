@@ -6,11 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.edu.infnet.appatandressaguerra.model.negocio.Pedido;
+import br.edu.infnet.appatandressaguerra.model.negocio.Usuario;
 import br.edu.infnet.appatandressaguerra.model.service.ClienteService;
 import br.edu.infnet.appatandressaguerra.model.service.PedidoService;
-import br.edu.infnet.appatandressaguerra.model.service.UsuarioService;
 
 @Controller
 public class PedidoController {
@@ -21,21 +22,19 @@ public class PedidoController {
 	@Autowired
 	private ClienteService clienteService;
 	
-	@Autowired
-	private UsuarioService usuarioService;
-	
 	@GetMapping(value = "/pedido")
-	public String showPedido(Model model) {
+	public String showPedido(Model model, @SessionAttribute("user") Usuario usuario) {
 		
-		model.addAttribute("lista", pedidoService.obterLista());
+		model.addAttribute("lista", pedidoService.obterLista(usuario));
 		model.addAttribute("clientes", clienteService.obterLista());
-		model.addAttribute("usuarios", usuarioService.obterLista());
 		
 		return "pedido/detalhe";
 	}
 	
 	@PostMapping(value = "/pedido/incluir")
-	public String incluir(Pedido pedido) {
+	public String incluir(Pedido pedido, @SessionAttribute("user") Usuario usuario) {
+		
+		pedido.setUsuario(usuario);
 		
 		pedidoService.incluir(pedido);
 		

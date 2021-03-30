@@ -57,8 +57,8 @@
 			<p>Nenhum usuário cadastrado.</p>
 		</c:if>
 		
-		<form action="/" method="get">
-			<button type="submit" class="btn btn-default">Voltar</button>
+		<form action="/home" method="get">
+			<button type="submit" class="btn btn-default">Home</button>
 		</form>
 	</div>
 </body>
