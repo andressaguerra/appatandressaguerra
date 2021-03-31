@@ -29,7 +29,7 @@ public class PedidoService {
 	}
 	
 	public List<Pedido> obterLista(Usuario usuario) {
-		return (List<Pedido>)pedidoRepository.obterLista(usuario.getId(), Sort.by(Sort.Direction.ASC, "cliente"));
+		return (List<Pedido>)pedidoRepository.obterLista(usuario.getId(), Sort.by(Sort.Direction.ASC, "nome"));
 	}
 
 }

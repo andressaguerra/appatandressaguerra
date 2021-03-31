@@ -10,24 +10,38 @@
 </head>
 <body>
 	<div class="jumbotron text-center">
-		<h1>Cadastro de Clientes</h1>
+		<h1>Clientes</h1>
 	</div>
 	<div class="container">
+		<h2>Cadastro de Clientes</h2>
 		<form action="/cliente/incluir" method="post">
 			<div class="form-group">
-				<label>Nome:</label> <input type="text" class="form-control" placeholder="Insira o seu nome" name="nome">
+				<label>Nome:</label> <input type="text" class="form-control" name="nome">
+			</div>
+			<div class="form-group">
+				<label>E-mail:</label> <input type="email" class="form-control" name="email">
+			</div>
+			<div class="form-group">
+				<label>Endereço:</label> <input type="text" class="form-control" name="endereco">
+			</div>
+			<div class="form-group">
+				<label>Telefone:</label> <input type="text" class="form-control" maxlength="10" name="telefone">
 			</div>
 
-			<button type="submit" class="btn btn-default">Cadastrar</button>
+			<button type="submit" class="btn btn-block">Cadastrar</button>
 		</form>
 	</div>
+	<br>
 	<div class="container">
+		<h2>Listagem de Clientes</h2>
 		<c:if test="${not empty lista}">
-			<h2>Listagem de Clientes</h2>
 			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>Nome</th>
+						<th>E-mail</th>
+						<th>Endereço</th>
+						<th>Telefone</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -35,6 +49,9 @@
 					<c:forEach var="c" items="${lista}">
 						<tr>
 							<td>${c.nome}</td>
+							<td>${c.email}</td>
+							<td>${c.endereco}</td>
+							<td>${c.telefone}</td>
 							<td><a href="/cliente/${c.id}/excluir">Excluir</a></td>
 						</tr>
 					</c:forEach>
@@ -49,10 +66,11 @@
 		<c:if test="${empty lista}">
 			<br>
 			<p>Nenhum cliente cadastrado.</p>
+			<br>
 		</c:if>
 		
 		<form action="/home" method="get">
-			<button type="submit" class="btn btn-default">Home</button>
+			<button type="submit" class="btn btn-block">Home</button>
 		</form>
 	</div>
 </body>

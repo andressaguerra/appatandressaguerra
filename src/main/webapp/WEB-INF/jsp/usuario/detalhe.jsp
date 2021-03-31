@@ -25,40 +25,17 @@
 			<div class="form-group">
 				<label>Senha:</label> <input type="password" class="form-control" placeholder="Insira a sua senha" name="senha">
 			</div>
-
-			<button type="submit" class="btn btn-default">Cadastrar</button>
-		</form>
-	</div>
-	<div class="container">
-		<c:if test="${not empty lista}">
-			<h2>Listagem de Usuários</h2>
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Nome</th>
-						<th>E-mail</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="u" items="${lista}">
-						<tr>
-							<td>${u.nome}</td>
-							<td>${u.email}</td>
-							<td><a href="/usuario/${u.id}/excluir">Excluir</a></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</c:if>
-
-		<c:if test="${empty lista}">
-			<br>
-			<p>Nenhum usuário cadastrado.</p>
-		</c:if>
-		
-		<form action="/home" method="get">
-			<button type="submit" class="btn btn-default">Home</button>
+			
+			<div class="form-group">
+				<label>Github:</label> <input type="text" class="form-control" placeholder="Insira o seu github" name="git">
+			</div>
+			
+			<div class="btn-group">
+				<button type="submit" class="btn btn-primary">Cadastrar</button>
+			</div>
+			<div class="btn-group">
+				<a href="/" class="btn btn-default" role="button">Voltar</a>
+			</div>
 		</form>
 	</div>
 </body>

@@ -26,10 +26,12 @@
 					<strong>Login inválido.</strong> ${erro}
 				</div>
 			</c:if>
-			<button type="submit" class="btn btn-default">Login</button>
-		</form>
-		<form action="/" method="get">
-			<button type="submit" class="btn btn-default">Criar Conta</button>
+			<div class="btn-group">
+				<button type="submit" class="btn btn-primary">Login</button>
+			</div>
+			<div class="btn-group">
+				<a href="/usuario" class="btn btn-default" role="button">Criar Conta</a>
+			</div>
 		</form>
 	</div>
 </body>

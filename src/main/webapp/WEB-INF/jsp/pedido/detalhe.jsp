@@ -10,9 +10,10 @@
 </head>
 <body>
 	<div class="jumbotron text-center">
-		<h1>Inclusão de Pedidos</h1>
+		<h1>Pedidos</h1>
 	</div>
 	<div class="container">
+		<h2>Inclusão de Pedidos</h2>
 		<form action="/pedido/incluir" method="post">
 			<div class="form-group">
 				<label>Cliente:</label>
@@ -24,28 +25,41 @@
 			</div>
 			
 			<div class="form-group">
-				<label>Descrição:</label> <input type="text" class="form-control" placeholder="Insira o seu pedido" name="descricao">
+				<label>Nome:</label> <input type="text" class="form-control" name="nome">
+			</div>
+			
+			<div class="form-group">
+				<label>Descrição:</label> <input type="text" class="form-control" name="descricao">
+			</div>
+			
+			<div class="form-group">
+				<label>Preço:</label> <input type="number" class="form-control" step="0.01" name="preco">
 			</div>
 
-			<button type="submit" class="btn btn-default">Incluir</button>
+			<button type="submit" class="btn btn-block">Incluir</button>
 		</form>
 	</div>
+	<br>
 	<div class="container">
+		<h2>Listagem de Pedidos</h2>
 		<c:if test="${not empty lista}">
-			<h2>Listagem de Pedidos</h2>
 			<table class="table table-striped">
 				<thead>
 					<tr>
+						<th>Nome</th>
 						<th>Descrição</th>
 						<th>Cliente</th>
+						<th>Preço</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="p" items="${lista}">
 						<tr>
+							<td>${p.nome}</td>
 							<td>${p.descricao}</td>
 							<td>${p.cliente.nome}</td>
+							<td>R$ ${p.preco}</td>
 							<td><a href="/pedido/${p.id}/excluir">Excluir</a></td>
 						</tr>
 					</c:forEach>
@@ -55,11 +69,12 @@
 
 		<c:if test="${empty lista}">
 			<br>
-			<p>Nenhum pedido cadastrado.</p>
+			<p>Nenhum pedido registrado.</p>
+			<br>
 		</c:if>
 		
 		<form action="/home" method="get">
-			<button type="submit" class="btn btn-default">Home</button>
+			<button type="submit" class="btn btn-block">Home</button>
 		</form>
 	</div>
 </body>

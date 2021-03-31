@@ -31,25 +31,23 @@ public class UsuarioController {
 			return "redirect:/home";
 		}
 		
-		model.addAttribute("erro", "Verifique se o e-mail " + email + " está correto e tente novamente.");
+		model.addAttribute("erro", "Verifique se o e-mail " + email + " e a senha estão corretos e tente novamente.");
 		
 		return "login";
 	}
 	
 	@GetMapping(value = "/usuario")
-	public String showUsuario(Model model) {
-		
-		model.addAttribute("lista", usuarioService.obterLista());
-		
+	public String showUsuario() {
 		return "usuario/detalhe";
 	}
 	
 	@PostMapping(value = "/usuario/incluir")
-	public String incluir(Usuario usuario) {
+	public String incluir(Model model, Usuario usuario) {
 		
 		usuarioService.incluir(usuario);
+		model.addAttribute("usuario", usuario);
 		
-		return "redirect:/usuario";
+		return "usuario/confirmacao";
 	}
 	
 	@GetMapping(value = "/usuario/{id}/excluir")

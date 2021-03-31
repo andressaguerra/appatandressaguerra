@@ -26,7 +26,7 @@ public class PedidoController {
 	public String showPedido(Model model, @SessionAttribute("user") Usuario usuario) {
 		
 		model.addAttribute("lista", pedidoService.obterLista(usuario));
-		model.addAttribute("clientes", clienteService.obterLista());
+		model.addAttribute("clientes", clienteService.obterListaCliente());
 		
 		return "pedido/detalhe";
 	}
