@@ -24,9 +24,9 @@ public class Usuario {
 	@OneToMany
 	@JoinColumn(name = "idUsuario")
 	private List<Pedido> pedidos;
-	@OneToMany
-	@JoinColumn(name = "idUsuario")
-	private List<Cliente> clientes;
+//	@OneToMany
+//	@JoinColumn(name = "idUsuario")
+//	private List<Cliente> clientes;
 	
 	public int getId() {
 		return id;
@@ -76,13 +76,13 @@ public class Usuario {
 		this.git = git;
 	}
 
-	public List<Cliente> getClientes() {
-		return clientes;
-	}
-
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
-	}
+//	public List<Cliente> getClientes() {
+//		return clientes;
+//	}
+//
+//	public void setClientes(List<Cliente> clientes) {
+//		this.clientes = clientes;
+//	}
 	
 	
 

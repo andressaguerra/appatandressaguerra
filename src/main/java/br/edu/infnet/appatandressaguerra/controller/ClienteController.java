@@ -19,9 +19,9 @@ public class ClienteController {
 	private ClienteService clienteService;
 	
 	@GetMapping(value = "/cliente")
-	public String showCliente(Model model) {
+	public String showCliente(Model model, @SessionAttribute("user") Usuario usuario) {
 		
-		model.addAttribute("lista", clienteService.obterListaCliente());
+		model.addAttribute("lista", clienteService.obterLista(usuario));
 		
 		return "cliente/detalhe";
 	}
@@ -37,13 +37,15 @@ public class ClienteController {
 	}
 	
 	@GetMapping(value = "/cliente/{id}/excluir")
-	public String excluir(Model model, @PathVariable Integer id) {
+	public String excluir(Model model, @PathVariable Integer id, @SessionAttribute("user") Usuario usuario) {
 		
 		try {
 			clienteService.excluir(id);
 		} catch (Exception e) {
+			
 			model.addAttribute("erro", "Não é possível excluir um cliente que possui pedidos.");
-			return showCliente(model);
+			
+			return showCliente(model, usuario);
 		}
 		
 		return "redirect:/cliente";

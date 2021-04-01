@@ -10,9 +10,10 @@
 </head>
 <body>
 	<div class="jumbotron text-center">
-		<h1>Cadastro de Usuários</h1>
+		<h1>Usuários</h1>
 	</div>
 	<div class="container">
+		<h2>Cadastro de Usuários</h2>
 		<form action="/usuario/incluir" method="post">
 			<div class="form-group">
 				<label>Nome:</label> <input type="text" class="form-control" placeholder="Insira o seu nome" name="nome">
@@ -37,6 +38,42 @@
 				<a href="/" class="btn btn-default" role="button">Voltar</a>
 			</div>
 		</form>
+		<br>
+	</div>
+	<div class="container">
+		<h2>Listagem de Usuários</h2>
+		<c:if test="${not empty lista}">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>E-mail</th>
+						<th>Github</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="u" items="${lista}">
+						<tr>
+							<td>${u.nome}</td>
+							<td>${u.email}</td>
+							<td>${u.git}</td>
+							<td><a href="/usuario/${u.id}/excluir">Excluir</a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</c:if>
+		<c:if test="${not empty erro}">
+			<div class="alert alert-danger">
+				<strong>Erro!</strong> ${erro}
+			</div>
+		</c:if>
+		<c:if test="${empty lista}">
+			<br>
+			<p>Nenhum usuário cadastrado.</p>
+			<br>
+		</c:if>
 	</div>
 </body>
 </html>

@@ -37,25 +37,33 @@ public class UsuarioController {
 	}
 	
 	@GetMapping(value = "/usuario")
-	public String showUsuario() {
+	public String showUsuario(Model model) {
+		
+		model.addAttribute("lista", usuarioService.obterLista());
+		
 		return "usuario/detalhe";
 	}
 	
 	@PostMapping(value = "/usuario/incluir")
-	public String incluir(Model model, Usuario usuario) {
+	public String incluir(Usuario usuario) {
 		
 		usuarioService.incluir(usuario);
-		model.addAttribute("usuario", usuario);
-		
-		return "usuario/confirmacao";
-	}
-	
-	@GetMapping(value = "/usuario/{id}/excluir")
-	public String excluir(@PathVariable Integer id) {
-		
-		usuarioService.excluir(id);
 		
 		return "redirect:/usuario";
 	}
-
+	
+	@GetMapping(value = "/usuario/{id}/excluir")
+	public String excluir(Model model, @PathVariable Integer id) {
+		
+		try {
+			usuarioService.excluir(id);
+		} catch (Exception e) {
+			
+			model.addAttribute("erro", "Não é possível excluir um usuário que possui clientes.");
+			
+			return showUsuario(model);
+		}
+		
+		return "redirect:/usuario";
+	}
 }

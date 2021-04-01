@@ -1,11 +1,12 @@
 package br.edu.infnet.appatandressaguerra.model.negocio;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,9 +20,12 @@ public class Cliente {
 	private String email;
 	private String endereco;
 	private String telefone;
-	@ManyToOne
+	@OneToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "idUsuario")
 	private Usuario usuario;
+//	@ManyToOne(cascade = CascadeType.DETACH)
+//	@JoinColumn(name = "idUsuario")
+//	private Usuario usuario;
 	
 	public int getId() {
 		return id;

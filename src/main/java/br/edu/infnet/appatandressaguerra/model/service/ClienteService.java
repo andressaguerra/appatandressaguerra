@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.appatandressaguerra.model.negocio.Cliente;
+import br.edu.infnet.appatandressaguerra.model.negocio.Usuario;
 import br.edu.infnet.appatandressaguerra.model.repository.IClienteRepository;
 
 @Service
@@ -27,8 +28,8 @@ public class ClienteService {
 		return (List<Cliente>)clienteRepository.findAll();
 	}
 	
-	public List<Cliente> obterListaCliente() {
-		return (List<Cliente>)clienteRepository.obterLista(Sort.by(Sort.Direction.ASC, "nome"));
+	public List<Cliente> obterLista(Usuario usuario) {
+		return (List<Cliente>)clienteRepository.obterLista(usuario.getId(), Sort.by(Sort.Direction.ASC, "nome"));
 	}
 
 }
