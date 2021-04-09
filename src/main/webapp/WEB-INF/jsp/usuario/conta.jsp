@@ -40,7 +40,7 @@
 </head>
 <body>
 	<div class="jumbotron text-center" style="margin-bottom: 0">
-		<h1>Cliente</h1>
+		<h1>Usuário</h1>
 	</div>
 
 	<nav class="navbar navbar-default">
@@ -58,61 +58,41 @@
 	</nav>
 	
 	<div class="container" style="margin-top: 50px">
-		<h3>Cadastro de Clientes</h3>
-		<form action="/cliente/incluir" method="post">
-			<div class="form-group">
-				<label>Nome:</label> <input type="text" class="form-control" name="nome" required>
+		<c:if test="${not empty erro}">
+			<div class="alert alert-danger">
+				${erro}
 			</div>
-			<div class="form-group">
-				<label>E-mail:</label> <input type="email" class="form-control" name="email" required>
-			</div>
-			<div class="form-group">
-				<label>Endereço:</label> <input type="text" class="form-control" name="endereco" required>
-			</div>
-			<div class="form-group">
-				<label>Telefone:</label> <input type="text" class="form-control" maxlength="10" name="telefone" required>
-			</div>
-
-			<button type="submit" class="btn btn-info">Cadastrar</button>
-		</form>
-	</div>
-	<br>
-	<div class="container">
-		<h3>Listagem de Clientes</h3>
+		</c:if>
+		<h3>Listagem de Usuários</h3>
 		<c:if test="${not empty lista}">
 			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>Nome</th>
 						<th>E-mail</th>
-						<th>Endereço</th>
-						<th>Telefone</th>
+						<th>Github</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="c" items="${lista}">
+					<c:forEach var="u" items="${lista}">
 						<tr>
-							<td>${c.nome}</td>
-							<td>${c.email}</td>
-							<td>${c.endereco}</td>
-							<td>${c.telefone}</td>
-							<td><a href="/cliente/${c.id}/excluir"><span class="glyphicon glyphicon-remove" style="color:red"></span></a></td>
+							<td>${u.nome}</td>
+							<td>${u.email}</td>
+							<td>${u.git}</td>
+							<td><a href="/usuario/${u.id}/excluir"><span class="glyphicon glyphicon-remove" style="color:red"></span></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-		</c:if>
-		<c:if test="${not empty erro}">
-			<div class="alert alert-danger">
-				<strong>Erro!</strong> ${erro}
+			<c:if test="${empty lista}">
+				<br><p>Nenhum usuário cadastrado.</p>
+			</c:if>
+			<div class="btn-group">
+				<a href="/usuario/novo" class="btn btn-info" role="button">Novo Usuário</a>
 			</div>
 		</c:if>
-		<c:if test="${empty lista}">
-			<br>
-			<p>Nenhum cliente cadastrado.</p>
-			<br>
-		</c:if>
 	</div>
+
 </body>
 </html>

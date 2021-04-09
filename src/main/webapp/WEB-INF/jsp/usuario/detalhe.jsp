@@ -6,74 +6,45 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <title>App AT Cosmetics</title>
+<style>
+	.jumbotron {
+		background-color: #5BC0DE;
+ 		color: #FFFFFF;
+	}
+</style>
 </head>
 <body>
 	<div class="jumbotron text-center">
-		<h1>Usuários</h1>
+		<h1>Criar Conta</h1>
 	</div>
 	<div class="container">
-		<h2>Cadastro de Usuários</h2>
 		<form action="/usuario/incluir" method="post">
 			<div class="form-group">
-				<label>Nome:</label> <input type="text" class="form-control" placeholder="Insira o seu nome" name="nome">
+				<label>Nome:</label> <input type="text" class="form-control" placeholder="Insira o seu nome" name="nome" required>
 			</div>
 			
 			<div class="form-group">
-				<label>E-mail:</label> <input type="email" class="form-control" placeholder="Insira o seu e-mail" name="email">
+				<label>E-mail:</label> <input type="email" class="form-control" placeholder="Insira o seu e-mail" name="email" required>
 			</div>
 			
 			<div class="form-group">
-				<label>Senha:</label> <input type="password" class="form-control" placeholder="Insira a sua senha" name="senha">
+				<label>Senha:</label> <input type="password" class="form-control" placeholder="Insira a sua senha" name="senha" required>
 			</div>
 			
 			<div class="form-group">
-				<label>Github:</label> <input type="text" class="form-control" placeholder="Insira o seu github" name="git">
+				<label>Github:</label> <input type="text" class="form-control" placeholder="Insira o seu github" name="git" required>
 			</div>
 			
 			<div class="btn-group">
-				<button type="submit" class="btn btn-primary">Cadastrar</button>
+				<button type="submit" class="btn btn-info">Cadastrar</button>
 			</div>
 			<div class="btn-group">
-				<a href="/" class="btn btn-default" role="button">Voltar</a>
+				<a href="${voltar}" class="btn btn-default" role="button">Voltar</a>
 			</div>
 		</form>
-		<br>
-	</div>
-	<div class="container">
-		<h2>Listagem de Usuários</h2>
-		<c:if test="${not empty lista}">
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th>Nome</th>
-						<th>E-mail</th>
-						<th>Github</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="u" items="${lista}">
-						<tr>
-							<td>${u.nome}</td>
-							<td>${u.email}</td>
-							<td>${u.git}</td>
-							<td><a href="/usuario/${u.id}/excluir">Excluir</a></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</c:if>
-		<c:if test="${not empty erro}">
-			<div class="alert alert-danger">
-				<strong>Erro!</strong> ${erro}
-			</div>
-		</c:if>
-		<c:if test="${empty lista}">
-			<br>
-			<p>Nenhum usuário cadastrado.</p>
-			<br>
-		</c:if>
 	</div>
 </body>
 </html>

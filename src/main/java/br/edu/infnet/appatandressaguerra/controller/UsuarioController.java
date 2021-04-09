@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import br.edu.infnet.appatandressaguerra.model.negocio.Usuario;
@@ -31,7 +32,7 @@ public class UsuarioController {
 			return "redirect:/home";
 		}
 		
-		model.addAttribute("erro", "Verifique se o e-mail " + email + " e a senha estão corretos e tente novamente.");
+		model.addAttribute("erro", "Verifique suas credenciais e tente novamente.");
 		
 		return "login";
 	}
@@ -39,9 +40,25 @@ public class UsuarioController {
 	@GetMapping(value = "/usuario")
 	public String showUsuario(Model model) {
 		
-		model.addAttribute("lista", usuarioService.obterLista());
+		model.addAttribute("voltar", "/");
 		
 		return "usuario/detalhe";
+	}
+	
+	@GetMapping(value = "/usuario/novo")
+	public String showUsuarioLogado(Model model) {
+		
+		model.addAttribute("voltar", "/usuario/conta");
+		
+		return "usuario/detalhe";
+	}
+	
+	@GetMapping(value = "/usuario/conta")
+	public String showConta(Model model) {
+		
+		model.addAttribute("lista", usuarioService.obterLista());
+		
+		return "usuario/conta";
 	}
 	
 	@PostMapping(value = "/usuario/incluir")
@@ -49,7 +66,7 @@ public class UsuarioController {
 		
 		usuarioService.incluir(usuario);
 		
-		return "redirect:/usuario";
+		return "usuario/confirmacao";
 	}
 	
 	@GetMapping(value = "/usuario/{id}/excluir")
@@ -59,11 +76,11 @@ public class UsuarioController {
 			usuarioService.excluir(id);
 		} catch (Exception e) {
 			
-			model.addAttribute("erro", "Não é possível excluir um usuário que possui clientes.");
+			model.addAttribute("erro", "<strong>Erro!</strong> Não é possível excluir um usuário que possui clientes.");
 			
-			return showUsuario(model);
+			return showConta(model);
 		}
 		
-		return "redirect:/usuario";
+		return "redirect:/usuario/conta";
 	}
 }
